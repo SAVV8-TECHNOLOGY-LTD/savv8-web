@@ -8,71 +8,45 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* ===================================
-       BRAND COLORS - Savv8 Design System
-       Change these values to update the entire theme
-       =================================== */
-    
-    /* Core Brand Colors */
-    --brand-primary: 0 0% 13%;        /* Charcoal Black #212121 */
-    --brand-secondary: 0 0% 62%;      /* Cool Gray #9E9E9E */
-    --brand-accent: 207 90% 54%;      /* Electric Blue #2196F3 */
-    --brand-highlight: 45 100% 51%;   /* Gold #FFC107 */
-    --brand-background: 0 0% 98%;     /* Off-white #FAFAFA */
-    
-    /* ===================================
-       SEMANTIC TOKENS (mapped from brand colors)
-       =================================== */
-    
-    --background: var(--brand-background);
-    --foreground: var(--brand-primary);
+    --background: 0 0% 100%;
+    --foreground: 236 66% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: var(--brand-primary);
+    --card-foreground: 236 66% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: var(--brand-primary);
+    --popover-foreground: 236 66% 15%;
 
-    --primary: var(--brand-primary);
+    --primary: 236 66% 30%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: var(--brand-secondary);
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 236 40% 96%;
+    --secondary-foreground: 236 66% 30%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 46%;
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 10% 46%;
 
-    --accent: var(--brand-accent);
+    --accent: 174 62% 47%;
     --accent-foreground: 0 0% 100%;
-    
-    --highlight: var(--brand-highlight);
-    --highlight-foreground: var(--brand-primary);
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 91%;
-    --input: 0 0% 91%;
-    --ring: var(--brand-accent);
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 236 66% 30%;
 
     --radius: 0.75rem;
     
-    /* ===================================
-       GRADIENTS
-       =================================== */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(0, 0%, 8%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(var(--brand-accent)) 0%, hsl(var(--brand-highlight)) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(var(--brand-primary)) 0%, hsl(0, 0%, 8%) 100%);
-    --gradient-tech: linear-gradient(135deg, hsl(var(--brand-accent)) 0%, hsl(207, 90%, 64%) 100%);
+    /* Custom Savv8 Design Tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(236, 66%, 30%) 0%, hsl(260, 60%, 45%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(174, 62%, 47%) 0%, hsl(266, 70%, 60%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(236, 66%, 30%) 0%, hsl(236, 60%, 20%) 100%);
     
-    /* ===================================
-       SHADOWS
-       =================================== */
-    --shadow-sm: 0 2px 8px hsl(var(--brand-primary) / 0.08);
-    --shadow-md: 0 4px 16px hsl(var(--brand-primary) / 0.12);
-    --shadow-lg: 0 8px 32px hsl(var(--brand-primary) / 0.16);
-    --shadow-glow: 0 0 40px hsl(var(--brand-accent) / 0.4);
-    --shadow-highlight: 0 0 30px hsl(var(--brand-highlight) / 0.5);
+    --shadow-sm: 0 2px 8px hsl(236 66% 30% / 0.08);
+    --shadow-md: 0 4px 16px hsl(236 66% 30% / 0.12);
+    --shadow-lg: 0 8px 32px hsl(236 66% 30% / 0.16);
+    --shadow-glow: 0 0 40px hsl(174 62% 47% / 0.3);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -94,44 +68,37 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Dark mode uses same brand colors with adjusted semantic mappings */
-    --brand-background: 0 0% 8%;
-    
-    --background: var(--brand-background);
+    --background: 236 66% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 13%;
+    --card: 236 50% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 13%;
+    --popover: 236 50% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: var(--brand-primary);
+    --primary: 174 62% 47%;
+    --primary-foreground: 236 66% 8%;
 
-    --secondary: 0 0% 72%;
-    --secondary-foreground: 0 0% 13%;
+    --secondary: 236 40% 18%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 22%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 236 40% 18%;
+    --muted-foreground: 220 10% 65%;
 
-    --accent: 207 90% 60%;
-    --accent-foreground: 0 0% 98%;
-    
-    --highlight: 45 100% 55%;
-    --highlight-foreground: 0 0% 13%;
+    --accent: 174 62% 47%;
+    --accent-foreground: 236 66% 8%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 22%;
-    --input: 0 0% 22%;
-    --ring: 207 90% 60%;
+    --border: 236 40% 18%;
+    --input: 236 40% 18%;
+    --ring: 174 62% 47%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(0, 0%, 13%) 0%, hsl(0, 0%, 8%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(207, 90%, 60%) 0%, hsl(45, 100%, 55%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(0, 0%, 13%) 0%, hsl(0, 0%, 5%) 100%);
-    --gradient-tech: linear-gradient(135deg, hsl(207, 90%, 60%) 0%, hsl(207, 90%, 70%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(236, 66%, 15%) 0%, hsl(260, 60%, 25%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(174, 62%, 47%) 0%, hsl(266, 70%, 60%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(236, 66%, 12%) 0%, hsl(236, 60%, 8%) 100%);
   }
 }
 
