@@ -5,7 +5,7 @@ const steps = [
     icon: UserCheck,
     number: "01",
     title: "Tell Us Who You Are",
-    description: "Share your profile - whether you're a student, NHS worker, corporate employee, or just looking for great deals.",
+    description: "Share your profile - whether you're a student, NHS/Bluelight worker, corporate employee, or just looking for great deals.",
   },
   {
     icon: Brain,
@@ -17,7 +17,7 @@ const steps = [
     icon: Gift,
     number: "03",
     title: "Get Personalized Discounts",
-    description: "Receive a curated feed of exclusive offers, cashback opportunities, and instant savings.",
+    description: "Receive a tailored feed of exclusive offers, cashback opportunities, and instant savings.",
   },
 ];
 
