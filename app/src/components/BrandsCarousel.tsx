@@ -16,28 +16,53 @@ const BrandsCarousel = () => {
   const brands = brandsResponse?.data || [];
   const stats = statsResponse?.data;
 
+  // Responsive items per view
+  const getItemsPerView = () => {
+    if (typeof window === 'undefined') return 5;
+    const width = window.innerWidth;
+    if (width < 640) return 1; // mobile: 1 item
+    if (width < 768) return 2; // sm: 2 items  
+    if (width < 1024) return 3; // md: 3 items
+    if (width < 1280) return 4; // lg: 4 items
+    return 5; // xl: 5 items
+  };
+
+  const [itemsPerView, setItemsPerView] = useState(getItemsPerView);
+
+  // Update items per view on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerView(getItemsPerView());
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Set initial value
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying || brands.length === 0) return;
     
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => 
-        prevIndex >= Math.max(0, brands.length - 5) ? 0 : prevIndex + 1
+        prevIndex >= Math.max(0, brands.length - itemsPerView) ? 0 : prevIndex + 1
       );
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying, brands.length]);
+  }, [isAutoPlaying, brands.length, itemsPerView]);
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex >= Math.max(0, brands.length - 5) ? 0 : prevIndex + 1
+      prevIndex >= Math.max(0, brands.length - itemsPerView) ? 0 : prevIndex + 1
     );
   };
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => 
-      prevIndex <= 0 ? Math.max(0, brands.length - 5) : prevIndex - 1
+      prevIndex <= 0 ? Math.max(0, brands.length - itemsPerView) : prevIndex - 1
     );
   };
 
@@ -64,20 +89,20 @@ const BrandsCarousel = () => {
             <Building2 className="w-4 h-4" />
             <span className="text-sm font-medium">Trusted Partners</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Brands We Work With
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
             We've partnered with leading brands across various industries to bring you exclusive savings and personalized offers.
           </p>
         </div>
 
         {brandsLoading ? (
           <div className="space-y-8">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-              {[1, 2, 3, 4, 5].map((i) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+              {Array.from({ length: itemsPerView }).map((_, i) => (
                 <Card key={i} className="border-border">
-                  <CardContent className="p-6 text-center">
+                  <CardContent className="p-4 sm:p-6 text-center">
                     <Skeleton className="h-12 w-full mb-4" />
                     <Skeleton className="h-4 w-3/4 mx-auto mb-2" />
                     <Skeleton className="h-3 w-1/2 mx-auto mb-2" />
@@ -94,28 +119,35 @@ const BrandsCarousel = () => {
             onMouseLeave={handleMouseLeave}
           >
             {/* Carousel Container */}
-            <div className="flex gap-6 transition-transform duration-500 ease-in-out"
-                 style={{ transform: `translateX(-${currentIndex * (100 / 5)}%)` }}>
+            <div 
+              className="flex gap-3 sm:gap-4 lg:gap-6 transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)` }}
+            >
               {brands.map((brand) => (
                 <Card 
                   key={brand.id}
-                  className="flex-shrink-0 w-1/5 border-border hover:shadow-lg transition-all duration-300 group cursor-pointer"
+                  className={`flex-shrink-0 border-border hover:shadow-lg transition-all duration-300 group cursor-pointer ${
+                    itemsPerView === 1 ? 'w-full' :
+                    itemsPerView === 2 ? 'w-1/2' :
+                    itemsPerView === 3 ? 'w-1/3' :
+                    itemsPerView === 4 ? 'w-1/4' : 'w-1/5'
+                  }`}
                 >
-                  <CardContent className="p-6 text-center">
-                    <div className="mb-4 p-4 bg-background rounded-lg shadow-sm group-hover:shadow-md transition-shadow">
+                  <CardContent className="p-4 sm:p-6 text-center">
+                    <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-background rounded-lg shadow-sm group-hover:shadow-md transition-shadow">
                       <img 
                         src={brand.logo} 
                         alt={brand.name}
-                        className="w-full h-12 object-contain"
+                        className="w-full h-8 sm:h-12 object-contain"
                       />
                     </div>
-                    <h3 className="font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+                    <h3 className="font-semibold text-sm sm:text-base text-foreground mb-2 group-hover:text-accent transition-colors">
                       {brand.name}
                     </h3>
                     <p className="text-xs text-muted-foreground mb-2">
                       {brand.category}
                     </p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 sm:line-clamp-none">
                       {brand.description}
                     </p>
                   </CardContent>
@@ -124,24 +156,24 @@ const BrandsCarousel = () => {
             </div>
 
             {/* Navigation Buttons */}
-            {brands.length > 5 && (
+            {brands.length > itemsPerView && (
               <>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background"
+                  className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background z-10 h-8 w-8 sm:h-10 sm:w-10 p-0"
                   onClick={goToPrevious}
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Button>
                 
                 <Button
                   variant="outline"
                   size="sm"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background"
+                  className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background z-10 h-8 w-8 sm:h-10 sm:w-10 p-0"
                   onClick={goToNext}
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Button>
               </>
             )}
@@ -149,9 +181,9 @@ const BrandsCarousel = () => {
         )}
 
         {/* Indicators */}
-        {brands.length > 5 && (
-          <div className="flex justify-center gap-2 mt-8">
-            {Array.from({ length: Math.max(0, brands.length - 4) }).map((_, index) => (
+        {brands.length > itemsPerView && (
+          <div className="flex justify-center gap-2 mt-6 sm:mt-8">
+            {Array.from({ length: Math.max(0, brands.length - itemsPerView + 1) }).map((_, index) => (
               <button
                 key={index}
                 className={`w-2 h-2 rounded-full transition-colors ${
@@ -164,33 +196,33 @@ const BrandsCarousel = () => {
         )}
 
         {/* Statistics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-12 sm:mt-16 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
           {statsLoading ? (
             <>
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="text-center">
-                  <Skeleton className="h-8 w-16 mx-auto mb-2" />
-                  <Skeleton className="h-4 w-20 mx-auto" />
+                  <Skeleton className="h-6 sm:h-8 w-12 sm:w-16 mx-auto mb-2" />
+                  <Skeleton className="h-3 sm:h-4 w-16 sm:w-20 mx-auto" />
                 </div>
               ))}
             </>
           ) : (
             <>
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">{stats?.totalBrands || 0}+</div>
-                <div className="text-sm text-muted-foreground">Partner Brands</div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-accent mb-2">{stats?.totalBrands || 0}+</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Partner Brands</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">{stats?.categoriesCount || 0}</div>
-                <div className="text-sm text-muted-foreground">Categories</div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-accent mb-2">{stats?.categoriesCount || 0}</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Categories</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">1M+</div>
-                <div className="text-sm text-muted-foreground">Available Offers</div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-accent mb-2">1M+</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">Available Offers</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">24/7</div>
-                <div className="text-sm text-muted-foreground">AI Monitoring</div>
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-accent mb-2">24/7</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">AI Monitoring</div>
               </div>
             </>
           )}
