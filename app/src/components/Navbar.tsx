@@ -83,7 +83,7 @@ const Navbar = () => {
               How It Works
             </button>
             <button 
-              onClick={() => handleNavigation("about")}
+              onClick={() => navigate("/about")}
               className={`font-medium transition-colors ${
                 isScrolled 
                   ? "text-foreground hover:text-primary" 
@@ -146,7 +146,10 @@ const Navbar = () => {
                 How It Works
               </button>
               <button 
-                onClick={() => handleNavigation("about")}
+                onClick={() => {
+                  navigate("/about");
+                  setIsMobileMenuOpen(false);
+                }}
                 className="text-foreground hover:text-primary font-medium transition-colors text-left"
               >
                 About
