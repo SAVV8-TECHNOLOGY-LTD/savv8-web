@@ -27,8 +27,8 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div className="container mx-auto px-4 sm:px-0 lg:px-8">
+        <div className="flex items-center justify-between sm:px-6 h-16 md:h-20">
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
             <div className="w-10 h-10 rounded-lg bg-gradient-accent flex items-center justify-center shadow-md">
@@ -110,7 +110,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-background border-t border-border animate-fade-in">
+          <div className="md:hidden bg-background px-6 border-t border-border animate-fade-in">
             <div className="flex flex-col space-y-4 py-6">
               <button 
                 onClick={() => scrollToSection("features")}
