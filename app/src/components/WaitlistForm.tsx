@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Mail, User, Briefcase, CheckCircle2 } from "lucide-react";
+import { userCategories, getUserCategoryLabel } from "@/constants/userCategories";
 
 const WaitlistForm = () => {
   const [formData, setFormData] = useState({
@@ -53,8 +54,11 @@ const WaitlistForm = () => {
               <h3 className="text-3xl font-bold text-foreground mb-4">
                 Welcome to Savv8!
               </h3>
-              <p className="text-muted-foreground text-lg mb-8">
-                You're officially on the waitlist. We'll notify you as soon as we launch.
+              <p className="text-muted-foreground text-lg mb-4">
+                Thanks for joining as a <span className="text-accent font-medium">{getUserCategoryLabel(formData.userType)}</span>!
+              </p>
+              <p className="text-muted-foreground mb-8">
+                We'll notify you as soon as we launch with personalized savings opportunities.
               </p>
               <Button 
                 variant="outline" 
@@ -129,11 +133,16 @@ const WaitlistForm = () => {
                     <SelectValue placeholder="Select your category" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="general">General User</SelectItem>
-                    <SelectItem value="student">Student</SelectItem>
-                    <SelectItem value="nhs">NHS/Blue light Worker</SelectItem>
-                    <SelectItem value="corporate">Corporate Employee</SelectItem>
-                    <SelectItem value="business">Business/Partner</SelectItem>
+                    {userCategories.map((category) => (
+                      <SelectItem key={category.value} value={category.value}>
+                        <div className="flex flex-col">
+                          <span className="font-medium">{category.label}</span>
+                          {category.description && (
+                            <span className="text-xs text-muted-foreground">{category.description}</span>
+                          )}
+                        </div>
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>

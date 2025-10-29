@@ -2,80 +2,11 @@ import { Calendar, User, ArrowRight, Newspaper } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import postImage from "@/assets/herosection.jpg"
-
-const blogPosts = [
-  {
-    id: "1",
-    title: "The Future of AI-Powered Personal Finance",
-    excerpt: "Discover how artificial intelligence is revolutionizing the way we save money and make financial decisions. From personalized recommendations to automated savings...",
-    author: "Bernard Ayamboro",
-    date: "October 25, 2025",
-    category: "Technology",
-    readTime: "5 min read",
-    image: postImage,
-    featured: true
-  },
-  {
-    id: "2",
-    title: "Student Savings Guide: Making Every Pound Count",
-    excerpt: "Essential tips and strategies for students to maximize their savings while studying. Learn about exclusive student discounts and smart spending habits...",
-    author: "Chloe Nunn",
-    date: "October 22, 2025",
-    category: "Savings Tips",
-    readTime: "7 min read",
-    image: postImage,
-    featured: false
-  },
-  {
-    id: "3",
-    title: "NHS Workers: Exclusive Benefits You Might Be Missing",
-    excerpt: "A comprehensive guide to all the special discounts and benefits available to NHS workers. From retail savings to wellness programs...",
-    author: "Savv8 Team",
-    date: "October 20, 2025",
-    category: "Benefits",
-    readTime: "6 min read",
-    image: postImage,
-    featured: false
-  },
-  {
-    id: "4",
-    title: "Corporate Partnerships: How Savv8 is Changing Employee Benefits",
-    excerpt: "Learn how companies are partnering with Savv8 to provide better employee benefits and savings opportunities. The future of workplace perks...",
-    author: "Bernard Ayamboro",
-    date: "October 18, 2025",
-    category: "Business",
-    readTime: "4 min read",
-    image: postImage,
-    featured: false
-  },
-  {
-    id: "5",
-    title: "Smart Shopping: 10 AI Tips for Better Deals",
-    excerpt: "Discover how artificial intelligence can help you find better deals and save money on everyday purchases. Expert tips from the Savv8 team...",
-    author: "Chloe Nunn",
-    date: "October 15, 2025",
-    category: "Tips & Tricks",
-    readTime: "8 min read",
-    image: postImage,
-    featured: false
-  },
-  {
-    id: "6",
-    title: "The Psychology of Saving: Why Personalization Matters",
-    excerpt: "Understanding the behavioral science behind effective saving strategies and how personalized approaches lead to better financial outcomes...",
-    author: "Savv8 Team",
-    date: "October 12, 2025",
-    category: "Psychology",
-    readTime: "6 min read",
-    image: postImage,
-    featured: false
-  }
-];
+import { getFeaturedPost, getRegularPosts } from "@/constants/blogData";
 
 const NewsBlogs = () => {
-  const featuredPost = blogPosts.find(post => post.featured);
-  const regularPosts = blogPosts.filter(post => !post.featured);
+  const featuredPost = getFeaturedPost();
+  const regularPosts = getRegularPosts();
 
   return (
     <section className="py-24 bg-muted/30" id="news-blogs">
@@ -99,7 +30,12 @@ const NewsBlogs = () => {
             <Link to={`/blog/${featuredPost.id}`}>
               <Card className="overflow-hidden border-border hover:shadow-lg transition-all duration-300 cursor-pointer group">
                 <div className="grid lg:grid-cols-2 gap-0">
-                  <div className="relative h-64 lg:h-auto">
+                  <div className="relative h-64 lg:h-auto overflow-hidden">
+                    <img 
+                      src={featuredPost.image} 
+                      alt={featuredPost.title}
+                      className="w-full h-full object-cover"
+                    />
                     <div className="absolute inset-0 bg-gradient-accent opacity-20 group-hover:opacity-30 transition-opacity"></div>
                     <div className="absolute top-4 left-4">
                       <span className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium">
@@ -153,7 +89,14 @@ const NewsBlogs = () => {
                 className="overflow-hidden border-border hover:shadow-lg transition-all duration-300 animate-fade-in-up group cursor-pointer"
                 style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
-                <div className="relative h-48 bg-gradient-accent opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-accent opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                </div>
                 <CardContent className="p-6">
                   <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
                     <span className="bg-accent/10 text-muted-foreground px-2 py-1 rounded-full">

@@ -1,4 +1,5 @@
 import { Sparkles, Linkedin, Twitter, Instagram, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -83,24 +84,24 @@ const Footer = () => {
             <h3 className="font-semibold text-lg mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link to="/privacy-policy" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link to="/terms-of-service" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link to="/cookie-policy" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   Cookie Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="mailto:support@savv8.com" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link to="/contact-support" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   Contact Support
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

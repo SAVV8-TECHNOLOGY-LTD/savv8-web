@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sparkles } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,9 +17,27 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const handleNavigation = (sectionId: string) => {
+    // If we're not on the homepage, navigate to homepage first
+    if (location.pathname !== '/') {
+      navigate('/', { replace: true });
+      // Use a small timeout to ensure the navigation completes before scrolling
+      setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      // If we're already on homepage, just scroll to section
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    }
     setIsMobileMenuOpen(false);
+  };
+
+  const handleLogoClick = () => {
+    if (location.pathname !== '/') {
+      navigate('/');
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -30,7 +51,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-0 lg:px-8">
         <div className="flex items-center justify-between sm:px-6 h-16 md:h-20">
           {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={handleLogoClick}>
             <div className="w-10 h-10 rounded-lg bg-gradient-accent flex items-center justify-center shadow-md">
               <Sparkles className="w-6 h-6 text-primary-foreground" />
             </div>
@@ -42,7 +63,7 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <button 
-              onClick={() => scrollToSection("features")}
+              onClick={() => handleNavigation("features")}
               className={`font-medium transition-colors ${
                 isScrolled 
                   ? "text-foreground hover:text-primary" 
@@ -52,7 +73,7 @@ const Navbar = () => {
               Features
             </button>
             <button 
-              onClick={() => scrollToSection("how-it-works")}
+              onClick={() => handleNavigation("how-it-works")}
               className={`font-medium transition-colors ${
                 isScrolled 
                   ? "text-foreground hover:text-primary" 
@@ -62,7 +83,7 @@ const Navbar = () => {
               How It Works
             </button>
             <button 
-              onClick={() => scrollToSection("about")}
+              onClick={() => handleNavigation("about")}
               className={`font-medium transition-colors ${
                 isScrolled 
                   ? "text-foreground hover:text-primary" 
@@ -72,7 +93,7 @@ const Navbar = () => {
               About
             </button>
             <button 
-              onClick={() => scrollToSection("faq")}
+              onClick={() => handleNavigation("faq")}
               className={`font-medium transition-colors ${
                 isScrolled 
                   ? "text-foreground hover:text-primary" 
@@ -82,7 +103,7 @@ const Navbar = () => {
               FAQ
             </button>
             <button 
-              onClick={() => scrollToSection("news-blogs")}
+              onClick={() => handleNavigation("news-blogs")}
               className={`font-medium transition-colors ${
                 isScrolled 
                   ? "text-foreground hover:text-primary" 
@@ -93,7 +114,7 @@ const Navbar = () => {
             </button>
             <Button 
               variant={isScrolled ? "default" : "hero"} 
-              onClick={() => scrollToSection("waitlist")}
+              onClick={() => handleNavigation("waitlist")}
             >
               Join Waitlist
             </Button>
@@ -113,38 +134,38 @@ const Navbar = () => {
           <div className="md:hidden bg-background px-6 border-t border-border animate-fade-in">
             <div className="flex flex-col space-y-4 py-6">
               <button 
-                onClick={() => scrollToSection("features")}
+                onClick={() => handleNavigation("features")}
                 className="text-foreground hover:text-primary font-medium transition-colors text-left"
               >
                 Features
               </button>
               <button 
-                onClick={() => scrollToSection("how-it-works")}
+                onClick={() => handleNavigation("how-it-works")}
                 className="text-foreground hover:text-primary font-medium transition-colors text-left"
               >
                 How It Works
               </button>
               <button 
-                onClick={() => scrollToSection("about")}
+                onClick={() => handleNavigation("about")}
                 className="text-foreground hover:text-primary font-medium transition-colors text-left"
               >
                 About
               </button>
               <button 
-                onClick={() => scrollToSection("faq")}
+                onClick={() => handleNavigation("faq")}
                 className="text-foreground hover:text-primary font-medium transition-colors text-left"
               >
                 FAQ
               </button>
               <button 
-                onClick={() => scrollToSection("news-blogs")}
+                onClick={() => handleNavigation("news-blogs")}
                 className="text-foreground hover:text-primary font-medium transition-colors text-left"
               >
                 News & Blogs
               </button>
               <Button 
                 variant="default" 
-                onClick={() => scrollToSection("waitlist")}
+                onClick={() => handleNavigation("waitlist")}
                 className="w-full"
               >
                 Join Waitlist
