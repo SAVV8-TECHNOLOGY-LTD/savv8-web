@@ -129,10 +129,10 @@ const WaitlistForm = () => {
                     <SelectValue placeholder="Select your category" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="student">Student</SelectItem>
-                    <SelectItem value="nhs">NHS Worker</SelectItem>
-                    <SelectItem value="corporate">Corporate Employee</SelectItem>
                     <SelectItem value="general">General User</SelectItem>
+                    <SelectItem value="student">Student</SelectItem>
+                    <SelectItem value="nhs">NHS/Blue light Worker</SelectItem>
+                    <SelectItem value="corporate">Corporate Employee</SelectItem>
                     <SelectItem value="business">Business/Partner</SelectItem>
                   </SelectContent>
                 </Select>

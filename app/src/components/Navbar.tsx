@@ -71,6 +71,26 @@ const Navbar = () => {
             >
               About
             </button>
+            <button 
+              onClick={() => scrollToSection("faq")}
+              className={`font-medium transition-colors ${
+                isScrolled 
+                  ? "text-foreground hover:text-primary" 
+                  : "text-primary-foreground/90 hover:text-primary-foreground"
+              }`}
+            >
+              FAQ
+            </button>
+            <button 
+              onClick={() => scrollToSection("news-blogs")}
+              className={`font-medium transition-colors ${
+                isScrolled 
+                  ? "text-foreground hover:text-primary" 
+                  : "text-primary-foreground/90 hover:text-primary-foreground"
+              }`}
+            >
+              News
+            </button>
             <Button 
               variant={isScrolled ? "default" : "hero"} 
               onClick={() => scrollToSection("waitlist")}
@@ -109,6 +129,18 @@ const Navbar = () => {
                 className="text-foreground hover:text-primary font-medium transition-colors text-left"
               >
                 About
+              </button>
+              <button 
+                onClick={() => scrollToSection("faq")}
+                className="text-foreground hover:text-primary font-medium transition-colors text-left"
+              >
+                FAQ
+              </button>
+              <button 
+                onClick={() => scrollToSection("news-blogs")}
+                className="text-foreground hover:text-primary font-medium transition-colors text-left"
+              >
+                News & Blogs
               </button>
               <Button 
                 variant="default" 

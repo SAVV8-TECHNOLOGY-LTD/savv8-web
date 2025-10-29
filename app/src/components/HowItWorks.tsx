@@ -4,20 +4,20 @@ const steps = [
   {
     icon: UserCheck,
     number: "01",
-    title: "Tell Us Who You Are",
-    description: "Share your profile - whether you're a student, NHS/Bluelight worker, corporate employee, or just looking for great deals.",
+    title: "Create Your Profile",
+    description: "Tell us a bit about you — student, NHS/Bluelight hero, corporate hustler, or just deal-hunter — and we’ll do the rest.",
   },
   {
     icon: Brain,
     number: "02",
-    title: "AI Analyzes Your Preferences",
-    description: "Our intelligent system learns your interests and spending patterns to find the perfect matches.",
+    title: "Let AI Do Its Magic",
+    description: "Savv8 learns your likes and lifestyle to handpick deals that actually make sense for you.",
   },
   {
     icon: Gift,
     number: "03",
-    title: "Get Personalized Discounts",
-    description: "Receive a tailored feed of exclusive offers, cashback opportunities, and instant savings.",
+    title: "Start Saving Instantly",
+    description: "Scroll your personalised feed, grab exclusive offers, and instant rewards — all in one place.",
   },
 ];
 

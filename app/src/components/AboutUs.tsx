@@ -136,7 +136,7 @@ const AboutUs = () => {
                 <h3 className="text-2xl font-semibold text-foreground mb-2">
                   {founder.name}
                 </h3>
-                <p className="text-accent font-medium mb-4">
+                <p className="text-muted-foreground font-medium mb-4">
                   {founder.role}
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
