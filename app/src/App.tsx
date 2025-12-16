@@ -6,11 +6,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import BlogDetail from "./pages/BlogDetail";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Home from "./pages/Home";
+import Offers from "./pages/Offers";
+import OfferDetails from "./pages/OfferDetails";
 import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CookiePolicy from "./pages/CookiePolicy";
 import ContactSupport from "./pages/ContactSupport";
 import NotFound from "./pages/NotFound";
@@ -28,11 +28,11 @@ const App = () => (
           <Navbar />
           <main>
             <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/blog/:id" element={<BlogDetail />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/offers" element={<Offers />} />
+              <Route path="/offer/:id" element={<OfferDetails />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/cookie-policy" element={<CookiePolicy />} />
               <Route path="/contact-support" element={<ContactSupport />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

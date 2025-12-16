@@ -17,7 +17,7 @@ const testimonials = [
     role: "University Student",
     location: "Edinburgh",
     rating: 5,
-    text: "As a student, every penny counts. Savv8 has helped me save over £200 this semester on textbooks, food, and entertainment.",
+    text: "As a student, every penny counts. Savv8 has helped me save over £200 this term on textbooks, food, and entertainment.",
     category: "Student"
   },
   {

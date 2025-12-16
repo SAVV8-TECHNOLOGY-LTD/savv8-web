@@ -1,49 +1,51 @@
-import { Sparkles, Linkedin, Twitter, Instagram, Mail } from "lucide-react";
+import { Linkedin, Twitter, Instagram, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import savv8Logo from "@/assets/savv8_logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-white/95 backdrop-blur-lg text-primary-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-accent flex items-center justify-center shadow-md">
-                <Sparkles className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <span className="text-2xl font-bold">Savv8</span>
+              <img
+                src={savv8Logo}
+                alt="Savv8"
+                className="w-[150px] h-[150px]  object-contain"
+              />
             </div>
             <p className="text-primary-foreground/80 mb-6 max-w-md">
-              Making savings smarter with AI-powered personalization. 
-              Join thousands discovering better deals every day.
+              Making savings smarter with AI-powered personalization. Join
+              thousands discovering better deals every day.
             </p>
             <div className="flex gap-4">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5" />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a 
-                href="mailto:hello@savv8.com" 
+              <a
+                href="mailto:hello@savv8.com"
                 className="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
                 aria-label="Email"
               >
@@ -57,22 +59,34 @@ const Footer = () => {
             <h3 className="font-semibold text-lg mb-4">Company</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#about" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a
+                  href="#about"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#features" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a
+                  href="#features"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
                   Features
                 </a>
               </li>
               <li>
-                <a href="#how-it-works" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a
+                  href="#how-it-works"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
                   How It Works
                 </a>
               </li>
               <li>
-                <a href="#waitlist" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a
+                  href="#waitlist"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
                   Join Waitlist
                 </a>
               </li>
@@ -84,22 +98,34 @@ const Footer = () => {
             <h3 className="font-semibold text-lg mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/privacy-policy" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link
+                  to="/privacy-policy"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms-of-service" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link
+                  to="/terms-of-service"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link to="/cookie-policy" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link
+                  to="/cookie-policy"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
                   Cookie Policy
                 </Link>
               </li>
               <li>
-                <Link to="/contact-support" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Link
+                  to="/contact-support"
+                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                >
                   Contact Support
                 </Link>
               </li>
